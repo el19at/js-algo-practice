@@ -12,7 +12,7 @@ ${[{"name":"Manchester City","wins":30,"loss":6,"draws":2,"scored":102,"conceded
 ${[{"name":"Manchester City","wins":30,"loss":6,"draws":2,"scored":102,"conceded":20},{"name":"Liverpool","wins":24,"loss":6,"draws":8,"scored":118,"conceded":29},{"name":"Arsenal","wins":30,"loss":0,"draws":8,"scored":87,"conceded":39}]} |${"Arsenal"}
 ${[{"name":"Chelsea","wins":35,"loss":3,"draws":0,"scored":102,"conceded":20},{"name":"Liverpool","wins":24,"loss":6,"draws":8,"scored":118,"conceded":29},{"name":"Arsenal","wins":28,"loss":2,"draws":8,"scored":87,"conceded":39}]} |${"Chelsea"}
 `
-    ("returns $expected when calling with the following param/s: a", ({
+    ("returns $expected when calling with the following param/s: $a", ({
       a,
       expected
     }) => {

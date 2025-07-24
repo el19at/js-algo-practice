@@ -1,5 +1,7 @@
 /*
-Create a function that takes an array of football clubs with properties: name, wins, loss, draws, scored, conceded, and returns the team name with the highest number of points. If two teams have the same number of points, return the team with the largest goal difference.
+Create a function that takes an array of football clubs with properties: name, wins, loss, draws, scored, conceded, and
+returns the team name with the highest number of points. If two teams have the same number of points,
+return the team with the largest goal difference.
 How to Calculate Points and Goal Difference
 team = {name: "Manchester United", wins: 30, loss: 3, draws: 5, scored: 88, conceded: 20 }
 
@@ -35,8 +37,18 @@ champions([
 ➞ "Manchester United"
 */
 
-function champions( /*args*/ ) {
-  //your code
+function champions( champions ) {
+  const maxPoints = Math.max(...champions.map((ele)=>clubPoints(ele)));
+  const arr = champions.filter((ele)=>clubPoints(ele)===maxPoints);
+  const maxGoals = Math.max(...arr.map((ele)=>clubGoals(ele)));
+  const res = arr.filter((ele)=>clubGoals(ele)===maxGoals);
+  return res[0].name;
+}
+function clubPoints(club){
+  return 3*club.wins + club.draws;
+}
+function clubGoals(club){
+  return club.scored - club.conceded;
 }
 
 exports.solution = champions;
