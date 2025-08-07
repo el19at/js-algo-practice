@@ -12,8 +12,17 @@ Both values will be positive.
 The LCM is the smallest integer that divides both numbers such that the remainder is zero.
 */
 
-function lastCommonMultiple(/*args*/) {
-  //your code
+function lastCommonMultiple(a, b) {
+  if (a<b)
+    a, b = b, a;
+  return a*b/gcd(a, b);
+}
+
+// assume b<a
+function gcd(a, b){
+  if(b===0)
+    return a
+  return gcd(b, a%b);
 }
 
 exports.solution = lastCommonMultiple;

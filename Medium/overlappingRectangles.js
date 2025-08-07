@@ -21,8 +21,23 @@ Notes
 Coordinates can be positive or negative integers.
 */
 
-function overlappingRectangles( /*args*/ ) {
-  //your code
+function overlappingRectangles(rec1, rec2) {
+  const rec1LineX = [rec1[0].x, rec1[1].x];
+  const rec1LineY = [rec1[0].y, rec1[1].y];
+  const rec2LineX = [rec2[0].x, rec2[1].x];
+  const rec2LineY = [rec2[0].y, rec2[1].y];
+  return rangeIntersectionLen(rec1LineX, rec2LineX) * rangeIntersectionLen(rec1LineY, rec2LineY);
 }
 
+function rangeIntersectionLen(line1, line2){
+  if (line1[0]>line1[1])
+    line1[0], line1[1] = line1[1], line1[0];
+  if (line2[0]>line2[1])
+    line2[0], line2[1] = line2[1], line2[0];
+  //
+  const left = Math.max(line1[0], line2[0]);
+  const right = Math.min(line1[1], line2[1]);
+  return Math.max(right - left, 0)
+
+}
 exports.solution = overlappingRectangles;
