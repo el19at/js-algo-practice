@@ -12,7 +12,7 @@ describe(__filename, () => {
     ${1} | ${2} | ${2} | ${2} | ${1} | ${true}
     ${2} | ${2} | ${2} | ${1} | ${2} | ${false}
   `(
-    "returns $expected when calling with the following param/s: a, b, c, d, e",
+    "returns $expected when calling with the following param/s: $a, $b, $c, $d, $e",
     ({ a, b, c, d, e, expected }) => {
       expect(file.solution(a, b, c, d, e)).toBe(expected);
     }
