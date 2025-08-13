@@ -15,8 +15,18 @@ Notes
 Add elements in the new array in the same way they occur in the input array.
 */
 
-function leader( /*args*/ ) {
-  //your code
+function leader( arr ) {
+  const n = arr.length;
+  const res = [];
+  let minimal = arr[n-1];
+  res.push(minimal);
+  for(let i=n-2;i>=0;i--){
+    if(arr[i]>minimal){
+      res.unshift(arr[i]);
+      minimal = arr[i];
+    }
+  }
+  return res;
 }
 
 exports.solution = leader;
