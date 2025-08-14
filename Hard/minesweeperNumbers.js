@@ -25,8 +25,23 @@ Since in the output the numbers 0-8 are used to determine the amount of adjacent
 A wikipedia page explaining how Minesweeper works is available in the Resources tab
 */
 
-function minesweeperNumbers(/*args*/) {
-  //your code
+function minesweeperNumbers(board) {
+  const res = board.map((e)=>[...e]);
+  for(let i = 0;i<board.length;i++)
+    for(let j = 0;j<board[0].length;j++)
+      res[i][j] = board[i][j]? 9 : countCellNeib(board, i, j);
+  return res;
 }
-
+function countCellNeib(arr, row, col){
+  const n = arr.length;
+  const m = arr[0].length;
+  let counter = 0;
+  for(let i=Math.max(row-1, 0);i<Math.min(row+2, n);i++)
+    for(let j=Math.max(col-1, 0);j<Math.min(col+2, m);j++){
+      if(i===row && j===col)
+        continue
+      counter += arr[i][j];
+  }
+  return counter;
+}
 exports.solution = minesweeperNumbers;
