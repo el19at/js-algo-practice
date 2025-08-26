@@ -1,5 +1,5 @@
 /*
-Write a function that returns true if a string consists of ascending or ascending AND consecutive numbers.
+Write a function that returns true if a string consists of ascending AND consecutive numbers.
 
 Examples
 ascending("232425") ➞ true
@@ -13,37 +13,6 @@ ascending("444445") ➞ true
 Notes
 A number can consist of any number of digits, so long as the numbers are adjacent to each other, and the string has at least two of them.
 */
-
-function myAscending( str ) {
-  const n = str.length;
-  const maxNumSize = Math.ceil(n/2);
-  for(let size = maxNumSize; size>0; size--){ // O(n//2) * O(n) => O(n^2)
-    const arr = makeArray(str, size); // O(n)
-    if (isAsending(arr)) // O(n)
-      return true;
-  }
-  return false;
-}
-function isAsending(arr){
-  if(arr.length<2)
-    return false;
-  let lastNum = arr[0]-1;
-  for(const num of arr){
-    if(!(num - lastNum === 1))
-      return false;
-    lastNum = num;
-  }
-  return true;
-}
-function makeArray(str, len){
-  const res = [];
-  const arrLen = Math.ceil(str.length/len);
-  for(let i  = 0;i<arrLen;i++){
-    const startSubString = i*len;
-    res.push(Number(str.substr(startSubString, len)));
-  }
-  return res;
-}
 function ascending( str ){
   const n = str.length;
   for(let starterSize = 1; starterSize <= n/2; starterSize++){
@@ -51,23 +20,28 @@ function ascending( str ){
     let i = 0;
     let currentSize = starterSize;
     while(i<n-currentSize){
-      const currentStr = str.substr(i, starterSize);
+      const currentStr = str.substr(i, currentSize);
       const currentNum = Number(currentStr);
       const expectedNum = currentNum+1;
       const expectedStr = String(expectedNum);
-      if(currentStr.length < expectedStr.length)
+      const from = i + currentSize;
+      let sizeInc = false;
+      if(currentStr.length < expectedStr.length){
         currentSize++;
-      let nextStr = str.substr(i+currentSize, currentSize)
+        sizeInc = true;
+      }
+      let nextStr = str.substr(from, currentSize);
       if(expectedStr !== nextStr){
         flag = false;
         break;
       }
-      i += currentSize;
+      i += currentSize - (sizeInc? 1 : 0);
     }
     if(flag)
       return true;
   }
   return false;
 }
-ascending("444445")
+//console.log(ascending("99100101"));
+console.log(ascending("9899100101"));
 exports.solution = ascending;

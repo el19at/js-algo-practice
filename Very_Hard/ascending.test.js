@@ -20,6 +20,7 @@ ${"54321"} |${false}
 ${"56555453"} |${false}
 ${"90090190290"} |${false}
 ${"35236237238"} |${false}
+${"9899100101"} |${true}
 `
     ("returns $expected when calling with the following param/s: $a", ({
       a,
