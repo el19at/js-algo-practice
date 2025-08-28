@@ -27,20 +27,29 @@ function distanceToNearestVowel(str) {
   );
   let before = 0;
   let after = 0;
-  for(let i=0; i<n && after<vowelsPos.length; i++){
-    if(i<vowelsPos[before])
-      res.push(vowelsPos[before]-i);
-    else if(i===vowelsPos[before]){
+  for(let i=0; i<n ; i++){
+    if(after >= vowelsPos.length){
+      res.push(distance(i, vowelsPos[before]));
+      continue;
+    }
+    if(i<vowelsPos[before]){
+      res.push(distance(vowelsPos[before], i));
+      continue;
+    }
+      if(i===vowelsPos[before]){
       after++;
       res.push(0);
+      continue;
     }
-    else if(vowelsPos[before] < i && i < vowelsPos[after]){
+    if(vowelsPos[before] < i && i < vowelsPos[after]){
       res.push(Math.min(distance(i, vowelsPos[before]), distance(i, vowelsPos[after])))
+      continue;
     }
-    else if(vowelsPos[after]===i){
+    if(vowelsPos[after]===i){
       before++;
       after++;
       res.push(0);
+      continue;
     }
   }
   return res;
@@ -51,5 +60,5 @@ function distance(a, b){
 function isVowel(c){
   return (new Set(['a', 'e', 'i', 'o', 'u'])).has(c);
 }
-console.log(distanceToNearestVowel('bbbabbba'));
+
 exports.solution = distanceToNearestVowel;

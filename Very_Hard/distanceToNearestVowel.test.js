@@ -25,7 +25,7 @@ describe(__filename, () => {
     ${"sugarandspice"}    | ${[1, 0, 1, 0, 1, 0, 1, 2, 2, 1, 0, 1, 0]}
     ${"totally"}          | ${[1, 0, 1, 0, 1, 2, 3]}
   `(
-    "returns $expected when calling with the following param/s: a",
+    "returns $expected when calling with the following param/s: $a",
     ({ a, expected }) => {
       expect(file.solution(a)).toStrictEqual(expected);
     }
