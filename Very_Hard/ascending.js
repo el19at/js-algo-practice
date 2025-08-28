@@ -13,10 +13,11 @@ ascending("444445") ➞ true
 Notes
 A number can consist of any number of digits, so long as the numbers are adjacent to each other, and the string has at least two of them.
 */
+
 function ascending( str ){
   const n = str.length;
-  for(let starterSize = 1; starterSize <= n/2; starterSize++){
-    let flag = true;
+  for(let starterSize = 1; starterSize <= n/2; starterSize++){ // o(n)
+    let isAscending = true;
     let i = 0;
     let currentSize = starterSize;
     while(i<n-currentSize){
@@ -25,23 +26,19 @@ function ascending( str ){
       const expectedNum = currentNum+1;
       const expectedStr = String(expectedNum);
       const from = i + currentSize;
-      let sizeInc = false;
-      if(currentStr.length < expectedStr.length){
-        currentSize++;
-        sizeInc = true;
-      }
+      let sizeInc = currentStr.length < expectedStr.length;
+      currentSize += Number(sizeInc);
       let nextStr = str.substr(from, currentSize);
       if(expectedStr !== nextStr){
-        flag = false;
+        isAscending = false;
         break;
       }
-      i += currentSize - (sizeInc? 1 : 0);
+      i += currentSize - sizeInc;
     }
-    if(flag)
+    if(isAscending)
       return true;
   }
   return false;
 }
-//console.log(ascending("99100101"));
-console.log(ascending("9899100101"));
+console.log(ascending("111111"))
 exports.solution = ascending;
