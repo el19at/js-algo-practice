@@ -18,8 +18,30 @@ Notes
 More specifically, look at the overlap between the previous words ending letters and the next word's beginning letters.
 */
 
-function join( /*args*/ ) {
-  //your code
+function join( words ) {
+  let res = words[0];
+  let minShared = res.length;
+  for(const word of words.slice(1)){
+    const charsToRemove = commonPrefixSuffixLen(res, word);
+    if(charsToRemove<minShared)
+      minShared = charsToRemove;
+    res += word.substr(charsToRemove);
+  }
+  return [res, minShared];
+}
+function commonPrefixSuffixLen(suffixWord, prefixWord){
+  const n = suffixWord.length;
+  const m = prefixWord.length;
+  let startInd = n<=m ? 0 : n-m;
+  while(startInd < n){
+    const currentSuffix = suffixWord.substr(startInd);
+    const len = currentSuffix.length;
+    const currentPrefix = prefixWord.substr(0, len);
+    if(currentPrefix === currentSuffix)
+      return len;
+    startInd++;
+  }
+  return 0;
 }
 
 exports.solution = join;

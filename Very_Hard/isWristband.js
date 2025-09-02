@@ -41,8 +41,34 @@ isWristband([
 // Part of diagonal right wristband.
 */
 
-function isWristband( /*args*/ ) {
-  //your code
-}
+function isWristband(mat) {
+  const rows = mat.length;
+  const cols = mat[0].length;
 
-exports.solution = isWristband;
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [1, 1],   
+    [1, -1]   
+  ];
+
+  function checkDirection(dr, dc) {
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const nr = r - dr;
+          const nc = c - dc;
+          if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+            if (mat[r][c] !== mat[nr][nc]) return false;
+          }
+        }
+      }
+      return true;
+    }
+
+  return directions.some(([dr, dc]) => checkDirection(dr, dc));
+}
+isWristband([["A", "B", "C"],
+             ["C", "A", "B"],
+             ["B", "C", "A"],
+             ["A", "B", "C"]]);
+exports.solution = isWristband; 
