@@ -21,8 +21,46 @@ matrix(4) ➞ [
 ]
 */
 
-function matrix( /*args*/ ) {
-  //your code
+
+
+
+
+
+const DIRECTIONS = [[0, 1],[1, 0],[0, -1],[-1, 0]] // right -> down -> left -> up
+
+function matrix(n) {
+  let mat = Array(n).fill(null).map(() => Array(n).fill(0));
+  return recSpiral(mat, 1, 0, 0, 0)
 }
 
+function recSpiral(mat, num, x, y, directionInd){
+  if(!inRangeAndFree(mat, x, y))
+    return mat;
+  mat[x][y] = num;
+  printMat(mat);
+  num++;
+  let nextX = x + DIRECTIONS[directionInd][0];
+  let nextY = y + DIRECTIONS[directionInd][1];
+  if(!inRangeAndFree(mat, nextX, nextY)){
+    directionInd = (directionInd+1)%4;
+    nextX = x + DIRECTIONS[directionInd][0];
+    nextY = y + DIRECTIONS[directionInd][1];
+  }
+  return recSpiral(mat, num, nextX, nextY, directionInd);
+}
+function inRangeAndFree(mat, x, y){
+  const n = mat.length;
+  return 0 <= Math.min(x, y) && Math.max(x, y) < n && mat[x][y] === 0;
+}
+function printMat(mat){
+  console.log('_________________________');
+  for(const row of mat){
+    let rowStr = '';
+    for(const cell of row)
+      rowStr += (cell + '\t');
+    console.log(rowStr)
+  }
+  console.log('_________________________');
+}
+matrix(3)
 exports.solution = matrix;
