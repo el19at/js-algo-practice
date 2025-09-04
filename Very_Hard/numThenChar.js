@@ -34,7 +34,7 @@ function numThenChar( arrs ) {
   const all = [];
   for(const arr of arrs)
     for(const element of arr)
-      all.push(element)
+      all.push(element);
   all.sort(sortBy);
   let arrInd = 0;
   let inArrInd = 0;
@@ -55,10 +55,9 @@ function sortBy(a, b){
     return typeOfA === typeof 's'? a.charCodeAt(0) - b.charCodeAt(0):
                                     a-b;
   }
-  if(typeOfA === typeof 1)
+  if(typeOfA === 'number')
     return -1;
-  return 1
-
+  return 1;
 }
 numThenChar([
  [1, 2, 4, 3, "a", "b"],
