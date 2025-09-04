@@ -30,8 +30,39 @@ Notes
 Test cases will containg integer and float numbers and single letters.
 */
 
-function numThenChar( /*args*/ ) {
-  //your code
+function numThenChar( arrs ) {
+  const all = [];
+  for(const arr of arrs)
+    for(const element of arr)
+      all.push(element)
+  all.sort(sortBy);
+  let arrInd = 0;
+  let inArrInd = 0;
+  for(const element of all){
+    if(inArrInd >= arrs[arrInd].length){
+      arrInd ++;
+      inArrInd = 0;
+    }
+    arrs[arrInd][inArrInd] = element;
+    inArrInd++;
+  }
+  return arrs;
 }
+function sortBy(a, b){
+  const typeOfA = typeof a;
+  const typeOfB = typeof b;
+  if(typeOfA === typeOfB){
+    return typeOfA === typeof 's'? a.charCodeAt(0) - b.charCodeAt(0):
+                                    a-b;
+  }
+  if(typeOfA === typeof 1)
+    return -1;
+  return 1
 
+}
+numThenChar([
+ [1, 2, 4, 3, "a", "b"],
+ [6, "c", 5], [7, "d"],
+ ["f", "e", 8]
+]);
 exports.solution = numThenChar;
