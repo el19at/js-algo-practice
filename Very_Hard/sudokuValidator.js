@@ -30,8 +30,36 @@ sudokuValidator([
 ]) ➞ false
 */
 
-function sudokuValidator(/*args*/) {
-  //your code
+function sudokuValidator(mat) {
+  if(!checkRows(mat) || !checkRows(transpose(mat)))
+      return false;
+  for(let i = 0; i < 9 ; i += 3)
+    for(let j = 0; j < 9 ; j += 3)
+      if(!haveOneToNine(getArrayFromBox(mat, i, j, 3)))
+        return false;
+  return true;
+  
 }
 
+function checkRows(mat){
+  for(const row of mat)
+    if(!haveOneToNine(row))
+      return false;
+  return true;
+}
+function haveOneToNine(arr){
+  const oneToNine = new Set([1,2,3,4,5,6,7,8,9]);
+  const res = oneToNine.intersection(new Set(arr));
+  return res.size === 9;
+}
+function transpose(mat){
+  return mat[0].map((_, colIndex) => mat.map(row => row[colIndex]));
+}
+function getArrayFromBox(mat, row, col, size){
+  const res = [];
+  for(let i = row;i<Math.min(row+size, mat.length);i++)
+    for(let j = col;j<Math.min(col+size, mat[0].length);j++)
+      res.push(mat[i][j]);
+  return res;
+}
 exports.solution = sudokuValidator;
