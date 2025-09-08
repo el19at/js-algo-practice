@@ -47,14 +47,17 @@ function checkRows(mat){
       return false;
   return true;
 }
+
 function haveOneToNine(arr){
   const oneToNine = new Set([1,2,3,4,5,6,7,8,9]);
   const res = oneToNine.intersection(new Set(arr));
   return res.size === 9;
 }
+
 function transpose(mat){
   return mat[0].map((_, colIndex) => mat.map(row => row[colIndex]));
 }
+
 function getArrayFromBox(mat, row, col, size){
   const res = [];
   for(let i = row;i<Math.min(row+size, mat.length);i++)
@@ -62,4 +65,5 @@ function getArrayFromBox(mat, row, col, size){
       res.push(mat[i][j]);
   return res;
 }
+
 exports.solution = sudokuValidator;
