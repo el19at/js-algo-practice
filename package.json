@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --testPathPattern=/",
+    "test-countChips": "jest --testPathPattern=Very_Hard/countChips.test.js",
     "test-arrayOfMultiples": "jest --testPathPattern=Easy/arrayOfMultiples.test.js",
     "test-calculator": "jest --testPathPattern=Easy/calculator.test.js",
     "test-canPartition": "jest --testPathPattern=Easy/canPartition.test.js",
