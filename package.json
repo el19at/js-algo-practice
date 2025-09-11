@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --testPathPattern=/",
+    "test-validParenthesis": "jest --testPathPattern=Very_Hard/validParenthesis.test.js",
     "test-countChips": "jest --testPathPattern=Very_Hard/countChips.test.js",
     "test-islandCounter": "jest --testPathPattern=Very_Hard/islandCounter.test.js",
     "test-arrayOfMultiples": "jest --testPathPattern=Easy/arrayOfMultiples.test.js",
